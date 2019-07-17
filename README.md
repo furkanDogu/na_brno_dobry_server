@@ -12,7 +12,7 @@ Typescript is a superset of JavaScript that helps developing scalable web applic
 
 ## -- _Features!_ --
 
-**na_brno_dobry_server** has user, product and category entities to work with and whole application consists of following x functionalities;
+**na_brno_dobry_server** has user, product and category entities to work with and whole application consists of following 10 functionalities;
 
 ### Mutations
 
