@@ -1,0 +1,88 @@
+type Category {
+  name: String!
+  id: ID!
+  products: [Product!]!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  owner: User!
+  price: Float!
+  category: Category!
+}
+
+enum ProductOrderCrits {
+  name_ASC
+  name_DESC
+  price_ASC
+  price_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+enum UserRole {
+  admin
+  user
+}
+
+type User {
+  id: ID!
+  role: UserRole!
+  name: String!
+  surname: String!
+  email: String!
+  birthday: String!
+  products: [Product!]!
+}
+
+type AuthPayload {
+  user: User!
+  token: String!
+}
+
+type LoginInfo {
+  email: String!
+  password: String!
+}
+
+type Query {
+  hello: String!
+  users: [User!]!
+  products(
+    own: Boolean!
+    orderBy: ProductOrderCrits
+    skip: Int
+    take: Int
+    filter: String
+  ): [Product!]!
+  categories: [Category!]!
+  oneProduct(id: String!): Product
+  oneCategory(id: String!): Category
+}
+
+type Mutation {
+  registerUser(
+    role: UserRole
+    name: String!
+    surname: String!
+    password: String!
+    email: String!
+    birthday: String!
+  ): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  addProduct(
+    name: String!
+    price: Float!
+    ownerId: String!
+    categoryId: String!
+  ): Product!
+  addCategory(name: String!): Category!
+  changePassword(password: String!): Boolean
+  updateProduct(
+    name: String
+    price: Float
+    categoryId: String
+    productId: String!
+  ): Product
+}
