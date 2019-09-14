@@ -24,7 +24,6 @@ export class Product extends BaseEntity {
   @Column("float")
   price: number;
 
-  // todo: search joın column typeorm
   @ManyToOne(() => Category, category => category.products)
   category: Category;
 
